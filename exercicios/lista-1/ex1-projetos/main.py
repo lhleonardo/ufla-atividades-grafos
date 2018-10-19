@@ -4,7 +4,7 @@ from vertice import Vertice
 from grafo import Grafo
 
 def main():
-    quantidade = int(input("Digite o número de arestas: "))
+    quantidade = int(input("Digite o número de vértices: "))
 
     grafo = Grafo()
 
@@ -31,5 +31,5 @@ def main():
 
         grafo.adiciona_aresta(v1, v2)
 
-    
+    grafo.imprime_vertices()
 main()
