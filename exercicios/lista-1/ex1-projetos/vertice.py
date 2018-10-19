@@ -26,5 +26,5 @@ class Vertice:
     def sucessores(self):
         return self.__sucessores
 
-    def __str__(self):
-        return self.__chave
+    def __repr__(self):
+        return "{0}".format(self.__chave)

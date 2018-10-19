@@ -8,17 +8,28 @@ def main():
 
     grafo = Grafo()
 
-    for i in range(quantidade):
-        v1 = Vertice(int(input("")))
-        v2 = Vertice(int(input("")))
+    # salva os objetos criados para economizar espaco e utilizá-los
+    # na criação das arestas
+    vertices_criados = {}
 
-        if not grafo.existe_vertice(v1):
-            grafo.adiciona_vertice(v1)
+    for i in range(1, quantidade + 1):
+        vertices_criados[i] = Vertice(i)
+        grafo.adiciona_vertice(vertices_criados[i])
+
+    print (vertices_criados)
+
+    while True:
+        leitura = input("")
         
-        if not grafo.existe_vertice(v2):
-            grafo.adiciona_vertice(v2)
+        if not leitura:
+            break
+        
+        # separa dois valores pelo espaco
+        valores_vertices = leitura.split()
+        v1 = vertices_criados[int(valores_vertices[0])]
+        v2 = vertices_criados[int(valores_vertices[1])]
 
         grafo.adiciona_aresta(v1, v2)
 
-    print(grafo)
+    
 main()

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from collections import defaultdict
 from vertice import Vertice
 
 class Grafo:
     def __init__(self):
         # mapeamento de todos os vértices e suas arestas
-        self.__elementos = defaultdict(set)
+        self.__elementos = {}
 
     def adiciona_vertice(self, vertice):
         if not isinstance(vertice, Vertice):
@@ -29,6 +28,5 @@ class Grafo:
         v2.adiciona_antecessor(v1)
     
     def __str__(self):
-        for chave in self.__elementos:
-            print(self.__elementos[chave])
+        print (self.__elementos)
 
