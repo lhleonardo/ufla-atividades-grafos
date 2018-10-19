@@ -28,5 +28,5 @@ class Grafo:
         v2.adiciona_antecessor(v1)
     
     def __str__(self):
-        print (self.__elementos)
+        return str(self.__elementos)
 
