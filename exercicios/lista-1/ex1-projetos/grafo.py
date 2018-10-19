@@ -27,12 +27,12 @@ class Grafo:
         v1.adiciona_sucessor(v2)
         v2.adiciona_antecessor(v1)
     
-    def imprime_vertices(self):
-        for chave, valor in self.__elementos.items():
-            print("------- ", chave, " ---------")
-            print("Antecessores: ", chave.antecessores())
-            print("Sucessores: " , chave.sucessores())
-        print("Saiu")
+    def vertices(self):
+        return self.__elementos.keys()
+    
+    def vizinhos_vertice(self, vertice):
+        return self.__elementos[vertice]
+
     def __str__(self):
         return str(self.__elementos)
 

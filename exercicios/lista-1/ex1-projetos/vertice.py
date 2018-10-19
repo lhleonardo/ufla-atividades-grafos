@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import heapq
+
 class Vertice:
     def __init__(self, chave, antecessores = None, sucessores = None):
         if (antecessores == None):
@@ -28,3 +30,6 @@ class Vertice:
 
     def __repr__(self):
         return "{0}".format(self.__chave)
+
+    def __lt__(self, outro):
+        return len(self.__antecessores) < len(outro.__antecessores)
