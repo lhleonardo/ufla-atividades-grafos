@@ -3,8 +3,15 @@
 from vertice import Vertice
 from grafo import Grafo
 
+from buscarProjeto import encontrar_caminho_projetos
+
+
 def main():
-    quantidade = int(input("Digite o número de vértices: "))
+    nome_arquivo = input("Digite o nome do arquivo:")
+    # arquivo para leitura
+    arquivo = open(nome_arquivo, "r")
+    
+    quantidade = int(arquivo.readline())
 
     grafo = Grafo()
 
@@ -16,11 +23,7 @@ def main():
         vertices_criados[i] = Vertice(i)
         grafo.adiciona_vertice(vertices_criados[i])
 
-    print (vertices_criados)
-
-    while True:
-        leitura = input("")
-        
+    for leitura in arquivo:
         if not leitura:
             break
         
