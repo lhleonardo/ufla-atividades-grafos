@@ -83,7 +83,9 @@ class Vertice:
         Faz com que os elementos que possuem menos dependentes são priorizados
     """
     def __lt__(self, outro):
-        if outro in self.__antecessores or self in outro.__antecessores:
+        if outro in self.__antecessores:
             return False
+        elif self in outro.__antecessores:
+            return True
         else:
             return len(self.__antecessores) < len(outro.__antecessores)

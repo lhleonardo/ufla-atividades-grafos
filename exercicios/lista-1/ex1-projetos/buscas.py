@@ -59,10 +59,9 @@ def encontrar_caminho_projetos(grafo, primeiro_projeto):
                 # marca o vértice atual e adiciona ele na fila de descobertas
                 atual.marcado = True
                 fila.append(atual)
-
+            
+            heapq.heapify(sucessores)
                 
-
-    
     # se a lista de vértices estiver vazia, quer dizer que todos foram alcançáveis. 
     # Esse caso engloba também o fato de que o grafo pode ser desconexo.
     if len(vertices) == 0:
