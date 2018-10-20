@@ -5,10 +5,10 @@ from grafo import Grafo
 
 from buscas import encontrar_caminho_projetos
 
+import os
 
 def main():
-    # nome_arquivo = input("Digite o nome do arquivo:")
-    nome_arquivo = "/home/lhleonardo/arquivo.txt"
+    nome_arquivo = input("Digite o caminho do arquivo:")
     # arquivo para leitura
     arquivo = open(nome_arquivo, "r")
     
@@ -44,6 +44,5 @@ def main():
     except Exception as ex:
         print(ex)
     
-
     
 main()
