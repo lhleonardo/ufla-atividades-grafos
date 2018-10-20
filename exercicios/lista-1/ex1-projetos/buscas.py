@@ -60,6 +60,7 @@ def encontrar_caminho_projetos(grafo, primeiro_projeto):
                 atual.marcado = True
                 fila.append(atual)
             
+            # refaz a ordenação da heap para tirar o menor elemento
             heapq.heapify(sucessores)
                 
     # se a lista de vértices estiver vazia, quer dizer que todos foram alcançáveis. 
