@@ -3,11 +3,12 @@
 from vertice import Vertice
 from grafo import Grafo
 
-from buscarProjeto import encontrar_caminho_projetos
+from buscas import encontrar_caminho_projetos
 
 
 def main():
-    nome_arquivo = input("Digite o nome do arquivo:")
+    # nome_arquivo = input("Digite o nome do arquivo:")
+    nome_arquivo = "/home/lhleonardo/arquivo.txt"
     # arquivo para leitura
     arquivo = open(nome_arquivo, "r")
     
@@ -18,8 +19,11 @@ def main():
     # salva os objetos criados para economizar espaco e utilizá-los
     # na criação das arestas
     vertices_criados = {}
+    primeiro_vertice = Vertice(1)
+    vertices_criados[1] = primeiro_vertice
+    grafo.adiciona_vertice(primeiro_vertice)
 
-    for i in range(1, quantidade + 1):
+    for i in range(2, quantidade + 1):
         vertices_criados[i] = Vertice(i)
         grafo.adiciona_vertice(vertices_criados[i])
 
@@ -34,5 +38,12 @@ def main():
 
         grafo.adiciona_aresta(v1, v2)
 
-    grafo.imprime_vertices()
+    try:
+        resultado = encontrar_caminho_projetos(grafo, primeiro_vertice)
+        print("A solução para este problema é: ", resultado)
+    except Exception as ex:
+        print(ex)
+    
+
+    
 main()

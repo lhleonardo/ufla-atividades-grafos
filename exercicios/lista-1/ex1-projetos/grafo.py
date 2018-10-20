@@ -28,7 +28,7 @@ class Grafo:
         v2.adiciona_antecessor(v1)
     
     def vertices(self):
-        return self.__elementos.keys()
+        return list(self.__elementos.keys())
     
     def vizinhos_vertice(self, vertice):
         return self.__elementos[vertice]
