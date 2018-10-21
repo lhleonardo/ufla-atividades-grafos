@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from random import shuffle
+
 """
     Representação simples de um grafo, utilizando dicionário
     para mapeamento de suas arestas
@@ -13,7 +15,16 @@ class Grafo:
         return iter(self.vertices)
 
     def adjacentes(self, vertice):
-        return self.arestas[vertice]
+        valores = self.arestas[vertice]
+        # se houver uma aresta (vertice-vertice) em loop, ela deve
+        # ser priorizada na descoberta, ou seja, adicionada no inicio
+        # da lista de adjacentes retornada
+        if len(valores) > 0:
+            if vertice in valores:
+                valores.remove(vertice)
+                valores.insert(0, vertice)            
+        
+        return valores
 
     def adiciona_vertice(self, vertice):
         # não permite vértices duplicados

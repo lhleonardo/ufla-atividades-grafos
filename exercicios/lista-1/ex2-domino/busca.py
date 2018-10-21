@@ -31,7 +31,6 @@ def verifica_sequencia(grafo):
     # o grafo é um Cn)
     while len(arestas) // 2 < grafo.qtd_arestas() and posicao < len(resultado):
         ciclo_interno = []
-        print(arestas)
         # faz a descoberta de um ciclo de forma recursiva, utilizando
         # a ideia da visita em uma busca em profundidade, passando 
         # o nó inicial e atual, que de início serão os mesmos
