@@ -26,6 +26,16 @@ if __name__ == "__main__":
     
     try:
         resultado = verifica_sequencia(grafo)
-        print(resultado)           
+        
+        indice = 0
+        print("Sequência de peças: ", end="")
+        while indice < len(resultado) - 1:
+            print("(", end="")
+            print(resultado[indice], "-", resultado[indice + 1], end="")
+            print(")", end="")
+            if indice is not (len(resultado) - 2):
+                print(" -> ", end="")
+            indice = indice + 1
+        print()
     except Exception as ex:
         print(ex)
