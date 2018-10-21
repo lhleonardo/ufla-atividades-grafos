@@ -36,3 +36,7 @@ class Grafo:
     def __str__(self):
         return str(self.__elementos)
 
+    def imprime(self):
+        for chave in self.__elementos.keys():
+            
+            print("{0}, ant={1}, suc={2}".format(chave, chave.antecessores(), chave.sucessores()))

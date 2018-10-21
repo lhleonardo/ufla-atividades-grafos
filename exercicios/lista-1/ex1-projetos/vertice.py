@@ -53,7 +53,12 @@ class Vertice:
         Remove um antecessor da lista de antecessores de um vértice
     """
     def remove_antecessor(self, antecessor):
-        self.__antecessores.remove(antecessor)
+        if antecessor in self.__antecessores:
+            self.__antecessores.remove(antecessor)
+
+    def remove_dependencia_dos_sucessores(self):
+        for sucessor in self.__sucessores:
+            sucessor.remove_antecessor(self)
 
     """
         Retorna todos os antecessores de um vértice
@@ -65,13 +70,20 @@ class Vertice:
         Retorna todos os sucessores de um vértice
     """
     def sucessores(self):
-        return self.__sucessores
+        sucessores = self.__sucessores
+
+        i = 0
+        while(i < len(sucessores) - 1):
+            if len(sucessores[i].antecessores()) > len(sucessores[i].antecessores()):
+                sucessores[i], sucessores[i+1] = sucessores[i+1], sucessores[i]
+            i = i + 1
+        return sucessores
 
     """
         Modificada a representação de um vértice (mostrando apenas seu valor)
     """
     def __repr__(self):
-        return "{0}".format(self.__chave)
+        return "{0}".format(self.__chave, self.__antecessores, self.__sucessores)
 
 
     """

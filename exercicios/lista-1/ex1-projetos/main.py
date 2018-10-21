@@ -27,10 +27,7 @@ def main():
         vertices_criados[i] = Vertice(i)
         grafo.adiciona_vertice(vertices_criados[i])
 
-    for leitura in arquivo:
-        if not leitura:
-            break
-        
+    for leitura in arquivo:      
         # separa dois valores pelo espaco
         valores_vertices = leitura.split()
         v1 = vertices_criados[int(valores_vertices[0])]
@@ -43,6 +40,5 @@ def main():
         print("A solução para este problema é: ", resultado)
     except Exception as ex:
         print(ex)
-    
-    
+
 main()
