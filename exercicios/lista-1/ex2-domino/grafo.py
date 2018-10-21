@@ -11,8 +11,9 @@ class Grafo:
         self.vertices = []
         self.arestas = {}
 
-    def __iter__(self):
-        return iter(self.vertices)
+    # sobrecarga de operadores para comodidade
+    def __getitem__(self, indice):
+        return self.vertices[indice]
 
     def adjacentes(self, vertice):
         valores = self.arestas[vertice]
@@ -50,4 +51,11 @@ class Grafo:
 
     def qtd_arestas(self):
         return sum(len(lista) for chave, lista in self.arestas.items()) // 2
+    
+
+    def is_euleriano(self):
+        for vertice in self:
+            if len(self.adjacentes(vertice)) % 2 == 1:
+                return False
         
+        return True

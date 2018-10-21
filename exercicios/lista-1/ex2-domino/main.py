@@ -26,11 +26,6 @@ if __name__ == "__main__":
     
     try:
         resultado = verifica_sequencia(grafo)
-        
-        while resultado[0] != resultado[len(resultado) - 1]:
-            print("tentativa", resultado)
-            ultimo = verifica_sequencia(grafo)
-           
         print(resultado)           
     except Exception as ex:
         print(ex)
