@@ -9,3 +9,8 @@ Códigos desenvolvido pelos alunos Guilherme Barbosa Ochikubo, Guilherme Henriqu
 Universidade Federal de Lavras (UFLA)
 
 2018/2
+
+# Estrutura de Pastas
+
+* exercícios: Contém todas as listas de exercícios avaliativas
+* trabalho-prático: pasta destinada ao código pertencente ao trabalho prático
