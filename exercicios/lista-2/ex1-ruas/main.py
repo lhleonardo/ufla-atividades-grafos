@@ -4,7 +4,6 @@ from floyd_warshall import FloydWarshall
 def verifica_distancias(d1, d2, x, y):
     if d1 is None or d2 is None:
         if d1 is None and x == 0:
-            print("Alguém é infinito * 0")
             d1 = 0
         else:
             return False
@@ -24,10 +23,12 @@ def montar_grafo(qtd_vertices):
 
         for j in leitura:
             temp = int(j)
-            # o peso de ir de uma rua para outra é 1
+            # o peso de ir de uma rua para outra é 1, 
+            # mas qualquer valor fixo aqui funcionará.
             g.adiciona_aresta(atual, temp, 1)
 
     return g
+
 
 def verifica_ruas_equivalentes(antigo, novo, multiplicador, independente):
     for i in antigo:
