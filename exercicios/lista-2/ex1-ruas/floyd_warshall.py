@@ -71,7 +71,7 @@ def FloydWarshall(grafo):
 
                 # se a distância D[i][j] for maior que a presente com
                 # o vértice intermediário, deverá ser melhorada.
-                if pode_melhorar_distancia(d_ij, temp:
+                if pode_melhorar_distancia(d_ij, temp):
                     pesos[i][j] = temp                    
 
     return pesos

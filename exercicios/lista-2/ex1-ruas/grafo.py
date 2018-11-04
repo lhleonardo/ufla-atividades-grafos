@@ -15,7 +15,7 @@ class GrafoPonderado(object):
             self.__adiciona_vertice(i)
 
     def __adiciona_vertice(self, vertice):
-        if vertice not in self.__vertices:
+        if vertice not in self.__mapeamento:
             # distância de um vértice para ele mesmo é zero.
             self.__mapeamento[vertice] = {}
             self.__mapeamento[vertice][vertice] = 0

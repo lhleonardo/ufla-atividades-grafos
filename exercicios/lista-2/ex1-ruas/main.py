@@ -12,11 +12,11 @@ def verifica_distancias(d1, d2, x, y):
 
     return temp >= d2
 
-def montar_grafo(qtd_vertices):
+def montar_grafo(qtd_vertices, arquivo):
     g = GrafoPonderado(qtd_vertices)
 
     for i in range(qtd_vertices):
-        leitura = input().split()
+        leitura = arquivo.readline().split()
         atual = int(leitura[0])
 
         del leitura[0]
@@ -29,7 +29,6 @@ def montar_grafo(qtd_vertices):
 
     return g
 
-
 def verifica_ruas_equivalentes(antigo, novo, multiplicador, independente):
     for i in antigo:
         for j in antigo:
@@ -40,20 +39,23 @@ def verifica_ruas_equivalentes(antigo, novo, multiplicador, independente):
     
     return True
 
-
 if __name__ == "__main__":
+    nome_arq = input("Digite o arquivo com dados:")
+    arquivo = open(nome_arq, "r")
 
-    qtd_vertices = int(input(""))
+    qtd_vertices = int(arquivo.readline())
 
-    grafo_original = montar_grafo(qtd_vertices)
-    grafo_atualizado = montar_grafo(qtd_vertices)
+    grafo_original = montar_grafo(qtd_vertices, arquivo)
+    grafo_atualizado = montar_grafo(qtd_vertices, arquivo)
 
     distancias_base = FloydWarshall(grafo_original)
     distancias_nova = FloydWarshall(grafo_atualizado)
 
-    leitura = input().split()
+    leitura = arquivo.readline().split()
     x = int(leitura[0])
     y = int(leitura[1])
+
+    arquivo.close()
 
     if verifica_ruas_equivalentes(distancias_base, distancias_nova, x, y):
         print ("Sim")
