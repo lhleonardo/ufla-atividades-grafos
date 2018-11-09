@@ -6,6 +6,15 @@ class Trecho(object):
 
     def tempoGasto(self):
         return self.__tempoGasto
-
+    
+    def horaChegada (self):
+        return self.__horaChegada
+        
+    def horaSaida (self):
+        return self.__horaSaida
+    
     def __eq__(self, outro):
-        return self.__horaChegada == outro.__horaChegada and self.__horaSaida == outro.__horaSaida
+        return int(self.__horaChegada) == int(outro.__horaChegada) and int(self.__horaSaida) == int(outro.__horaSaida)
+        
+    def __lt__ (self, outro):
+        return int(self.__horaChegada) < int(outro.__horaChegada) 
