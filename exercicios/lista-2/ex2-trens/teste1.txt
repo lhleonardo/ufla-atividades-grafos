@@ -1,0 +1,18 @@
+3
+Itapevi
+Grajau
+Guaianases
+3
+2
+0900 Itapevi
+1200 Grajau
+2
+1200 Grajau
+2200 Guaianases
+3
+0900 Itapevi
+1200 Grajau
+2300 Guaianases
+0800
+Itapevi
+Guaianases

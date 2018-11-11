@@ -9,33 +9,57 @@ def main():
         Dicionario para guardar as estações mapeadas pelo seu nome
     """
     estacoes = {}
+    nome_arquivo = input("Digite o caminho para o arquivo de dados: ")
+
+    arquivo = open(nome_arquivo, "r")
+
+    qtdCidades = int(arquivo.readline())
     
-    qtdCidades = int(input("Quantidade cidades: "))
-    
-    for i in range(qtdCidades):
-        nome = input("Estação {}: ".format(i))
+    contador = 0
+    while contador < qtdCidades:
+        nome = arquivo.readline()
         estacao = Estacao(nome)
 
         estacoes[nome] = estacao
 
         grafo.adiciona_estacao(estacao)
-    
-    qtdTrens = int(input("Quantidade de trens: "))
-    
-    for i in range(qtdTrens):        
-        hora1 = input("Hora de saida")
-        nomeEstacao1 = input("Estação de saida: ")
-        estacao1 = estacoes[nomeEstacao1]
 
-        hora2 = input("Hora de chegada")
-        nomeEstacao2 = input("Estação de chegada: ")
-        estacao2 = estacoes[nomeEstacao2]
-
-        grafo.adiciona_trecho(estacao1, estacao2, Trecho(hora2, hora1))
+        contador = contador + 1
     
-    horaPassageiro = input("Horario que o passageiro sai: ")
-    origem = input("Estação de origem: ")
-    destino = input("Estação de destino: ")
+    qtdTrens = int(arquivo.readline())
+    
+    i = 0
+    while i < qtdTrens:
+        qtd_partidas = int(arquivo.readline())
+
+        # lista de tuplas
+        partidas = []
+        j = 0
+        while j < qtd_partidas:
+            # formato da linha: 
+            # HoraPartida1 Cidade1
+            leitura = arquivo.readline().split()
+            print(leitura)
+            hora = leitura[0]
+            estacao = leitura[1]
+            print("Hora {0}: {1}".format(hora, estacao))
+            # cria uma nova tupla no formato (hora, estacao)
+            partidas.append((hora, estacao))
+            
+            j = j + 1
+        
+        j = 0
+
+        # nunca possuirá menos que duas partidas, já que possui
+        # origem de uma aresta e destino a outra...
+        while j < (len(partidas) - 1):
+            partida1 = partidas[j]
+            partida2 = partidas[j+1]
+            grafo.adiciona_trecho(partida1[1], partida2[1], Trecho(partida2[0], partida1[0]))
+    
+    horaPassageiro = arquivo.readline()
+    origem = arquivo.readline()
+    destino = arquivo.readline()
     
     print(procura_percurso(grafo, estacoes[origem], estacoes[destino], horaPassageiro))
 
