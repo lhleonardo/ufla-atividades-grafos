@@ -1,10 +1,11 @@
 from grafo import GrafoPonderado
+from trecho import Trecho
 import sys
 
 def extrairProximaCidade(lista):
     menor = lista[0]
     for i in lista :
-        if i.distancia < menor.distancia:
+        if int(i.distancia) < int(menor.distancia):
             menor = i
     lista.remove(menor)
     return menor
@@ -12,13 +13,14 @@ def extrairProximaCidade(lista):
 def melhoraHorario (atual,trechos,origem):
     menor = Trecho(2500,2500)
     for i in trechos :
-        if i < menor and int(i.horaChegada()) < int(atual.distancia):
+        if i < menor and int(i.horaChegada()) < int(origem.distancia) and int(atual.distancia) <= int(i.horaSaida()):
             menor = i
-            atual.distancia = menor.horaChegada()
-            atual.pai = origem
+            origem.distancia = menor.horaChegada()
+            origem.pai = atual
     
 def procura_percurso(grafo, origem, destino, horaSaida): 
     cidades = grafo.map().keys()
+    cidades = list(cidades)
     mapeamento = grafo.map()
     
     for cidade in cidades:
@@ -26,13 +28,14 @@ def procura_percurso(grafo, origem, destino, horaSaida):
         cidade.distancia = sys.maxsize
         
     origem.distancia = 0
+    origem.pai = None
     S = []
     Q = cidades
-    while len(q) > 0 :
+    while len(Q) > 0 :
          u = extrairProximaCidade (Q)
          S.append(u)
          for vizinho in mapeamento[u].keys() :
-             melhoraHorario (u, mapemanto[u][vizinho], vizinho)
+             melhoraHorario (u, mapeamento[u][vizinho], vizinho)
              
-    return "{0}-{1}".format(origem.horaSaida(), destino.horaChegada())
+    return "{0}-{1}".format(origem.distancia, destino.distancia)
             

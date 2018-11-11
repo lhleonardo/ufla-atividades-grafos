@@ -31,15 +31,13 @@ def main():
         nomeEstacao2 = input("Estação de chegada: ")
         estacao2 = estacoes[nomeEstacao2]
 
-
         grafo.adiciona_trecho(estacao1, estacao2, Trecho(hora2, hora1))
-    
     
     horaPassageiro = input("Horario que o passageiro sai: ")
     origem = input("Estação de origem: ")
     destino = input("Estação de destino: ")
     
-    print(procura_percurso(grafo, origem, destino, horaPassageiro))
+    print(procura_percurso(grafo, estacoes[origem], estacoes[destino], horaPassageiro))
 
 if __name__ == "__main__":
     main()

@@ -5,3 +5,6 @@ class Estacao(object):
 
     def __eq__(self, outra):
         return self.__nome == outra.__nome
+
+    def __hash__(self):
+        return hash(self.__nome)
