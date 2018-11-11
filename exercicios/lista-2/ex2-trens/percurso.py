@@ -17,6 +17,7 @@ def melhoraHorario (atual,trechos,origem):
             menor = i
             origem.distancia = menor.horaChegada()
             origem.pai = atual
+            origem.trecho = menor
     
 def procura_percurso(grafo, origem, destino, horaSaida): 
     cidades = grafo.map().keys()
@@ -26,7 +27,8 @@ def procura_percurso(grafo, origem, destino, horaSaida):
     for cidade in cidades:
         cidade.pai = None
         cidade.distancia = sys.maxsize
-        
+        cidade.trecho = None
+
     origem.distancia = 0
     origem.pai = None
     S = []
@@ -36,6 +38,17 @@ def procura_percurso(grafo, origem, destino, horaSaida):
          S.append(u)
          for vizinho in mapeamento[u].keys() :
              melhoraHorario (u, mapeamento[u][vizinho], vizinho)
-             
-    return "{0}-{1}".format(origem.distancia, destino.distancia)
+
+
+    atual = destino
+    anterior = None
+
+    while atual is not None and atual is not origem:
+        anterior = atual
+        atual = atual.pai
+
+    if atual == origem:
+        return "{0}-{1}".format(anterior.trecho.horaSaida(), destino.distancia)
+    else:
+        return "Sem solução viável."
             
