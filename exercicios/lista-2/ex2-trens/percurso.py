@@ -39,7 +39,6 @@ def procura_percurso(grafo, origem, destino, horaSaida):
          for vizinho in mapeamento[u].keys() :
              melhoraHorario (u, mapeamento[u][vizinho], vizinho)
 
-
     atual = destino
     anterior = None
 
@@ -47,8 +46,11 @@ def procura_percurso(grafo, origem, destino, horaSaida):
         anterior = atual
         atual = atual.pai
 
-    if atual == origem:
-        return "{0}-{1}".format(anterior.trecho.horaSaida(), destino.distancia)
+    if atual is not None and atual == origem:
+        if int(anterior.trecho.horaSaida()) >= int(horaSaida):
+            return "{0}-{1}".format(anterior.trecho.horaSaida(), destino.distancia)
+        else:
+            return "Sem solução viável."
     else:
         return "Sem solução viável."
             
