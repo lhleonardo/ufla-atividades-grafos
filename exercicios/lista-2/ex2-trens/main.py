@@ -17,7 +17,7 @@ def main():
     
     contador = 0
     while contador < qtdCidades:
-        nome = arquivo.readline()
+        nome = arquivo.readline().splitlines()[0]
         estacao = Estacao(nome)
 
         estacoes[nome] = estacao
@@ -38,11 +38,9 @@ def main():
         while j < qtd_partidas:
             # formato da linha: 
             # HoraPartida1 Cidade1
-            leitura = arquivo.readline().split()
-            print(leitura)
+            leitura = arquivo.readline().splitlines()[0].split()
             hora = leitura[0]
             estacao = leitura[1]
-            print("Hora {0}: {1}".format(hora, estacao))
             # cria uma nova tupla no formato (hora, estacao)
             partidas.append((hora, estacao))
             
@@ -55,11 +53,14 @@ def main():
         while j < (len(partidas) - 1):
             partida1 = partidas[j]
             partida2 = partidas[j+1]
-            grafo.adiciona_trecho(partida1[1], partida2[1], Trecho(partida2[0], partida1[0]))
+            grafo.adiciona_trecho(estacoes[partida1[1]], estacoes[partida2[1]], Trecho(partida2[0], partida1[0]))
+            j = j + 1
+        
+        i = i + 1
     
-    horaPassageiro = arquivo.readline()
-    origem = arquivo.readline()
-    destino = arquivo.readline()
+    horaPassageiro = arquivo.readline().splitlines()[0]
+    origem = arquivo.readline().splitlines()[0]
+    destino = arquivo.readline().splitlines()[0]
     
     print(procura_percurso(grafo, estacoes[origem], estacoes[destino], horaPassageiro))
 
