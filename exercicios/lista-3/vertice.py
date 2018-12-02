@@ -12,6 +12,3 @@ class Vertice:
     
     def is_sorvedouro(self):
         return self.__is_sorvedouro
-    
-    def __repr__(self):
-        return "{}".format(self.__nome)

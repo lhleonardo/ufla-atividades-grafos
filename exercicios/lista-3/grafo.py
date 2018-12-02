@@ -67,8 +67,6 @@ class Grafo:
             else:
                 self.__fonte = vertice
         
-        
-
     def adiciona_aresta(self, inicio, fim, peso):
         if not isinstance(inicio, Vertice) or not isinstance(fim, Vertice):
             raise ValueError("Para adicionar uma aresta, os atributos inicio e " +
@@ -114,7 +112,7 @@ class Grafo:
 
     def __calcula_criterio(self, aresta):
         # parametro de comparação:
-        # - peso da aresta de retorno da aresta atual 
+        # - peso da aresta atual 
         # - quantidade de adjacentes
         return aresta.peso + len(self.__ligacoes[aresta.destino()])
 
@@ -165,6 +163,12 @@ class Grafo:
 
     def __confere_dados(self):
         for aresta in self.__ligacoes[self.__sorvedouro]:
+            # o resultado só estará correto caso o fluxo
+            # da aresta (s, x), sendo x pertencente as atividades
+            # informadas, for igual a zero. 
+            
+            # Quando isso acontece, quer dizer que todas as tarefas
+            # puderam ser atribuídas as suas máquinas
             if aresta.fluxo != aresta.peso:
                 return "Não há solução para o problema."
                         
@@ -181,6 +185,12 @@ class Grafo:
                     indice = aresta.destino().nome()
                     # atividade que será executada no computador
                     nome_atividade = atividade.nome()
+                    
+                    # converte em uma lista, para conseguir modificar o conteúdo 
+                    # da string em determinada posição
+                    # 
+                    # a posição modificada é diretamente ligada ao computador que
+                    # foi executado
                     temp=list(mensagem)
                     temp[indice]=nome_atividade
                     mensagem=''.join(temp)

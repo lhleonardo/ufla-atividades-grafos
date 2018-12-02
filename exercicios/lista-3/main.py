@@ -15,18 +15,35 @@ def main():
     for i in range(10):
         vertice = Vertice(i)
         grafo.adiciona_computador(vertice)
+        
         # mapeamento de computador para cada IDentificador
         computadores[i] = vertice
 
+    # percorre as linhas do arquivo
     for linha in arquivo:
+        # remove o ; do final da linha, já que não é essencial para 
+        # diferenciar as entradas, pois o \n já faz esse trabalho...
+        linha = linha.replace(";", "")
+        
+        # divide a leitura em 
+        # Atividade:Qtd Pc1Pc2...PcN
         leitura = linha.split()
-
+        
+        # bloco 1 com a parte Atividade:Qtd
+        # computadores_usados com Pc1Pc2...PcN
         bloco1, computadores_usados = leitura[0], leitura[1]
         
+        # descobre a tarefa [A-Z] e a quantidade de máquinas 
+        # que deverão executá-la
         tarefa, qtd = bloco1[0], bloco1[1]
-
+        
+        # vértice que referencia a tarefa
         vertice = Vertice(tarefa)
         grafo.adiciona_tarefa(vertice)
+        
+        # a quantidade de execuções para a tarefa deve ser salva, pois será necessário
+        # criar uma ligação entre o sorvedouro (s) e esta mesma tarefa, sendo o peso
+        # da aresta definido pela quantidade de execuções
         tarefas[tarefa] = (vertice, int(qtd))
 
         # cria aresta entre a tarefa e todos os computadores que ela pode utilizar
