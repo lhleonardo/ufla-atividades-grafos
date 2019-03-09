@@ -1,0 +1,15 @@
+Na divisão de sub-regiões, considerar: 
+    1) baseado em distâncias
+    2) baseado em volumes em centros de distribuições
+    3) baseado em sobrecarga de entregas
+
+Ideias de divisões:
+    a) Dividir sub-regiões a partir dos centros de distribuições. 
+    Cada casa cadastrada vai encontrar o centro de distribuição mais próximo a que ela pertença;
+
+    b) Descobrir as rotas das sub-regiões a partir de um TSP-Inserção mais próxima, com critérios 
+    categorizados as casas dos clientes que realizaram pedidos, considerando o valor do pedido 
+    e o peso em m^3 da mercadoria de entrega;
+
+    c) Definir os carros para entregas em suas sub-regiões, a partir da demanda dos clientes 
+    dentro delas;
